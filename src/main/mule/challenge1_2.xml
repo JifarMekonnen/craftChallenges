@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="challenge2Flow" doc:id="32d3e75f-c7ea-48b9-9c37-b4e5c079d2bc" >
+		<http:listener doc:name="Listener" doc:id="98c77e18-f866-4af4-839e-3eb82e8de38a" path="/demo2" allowedMethods="POST" config-ref="HTTP_Listener_config8"/>
+		<ee:transform doc:name="Transform Message" doc:id="02db750e-3f39-492a-9f57-71675e87c362" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+
+fun getNo(payload,name) = payload reduce ((item,acc="") -> if(item.company == name)acc ++ item.id ++ "|" ++ item.name ++ "*" else acc ++ "")
+---
+payload distinctBy ((item, index) -> item.company) map ((item, index) -> {(item.company):getNo(payload,item.company)})]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="1817c764-8aa2-4c6f-bde3-9a95b137705d" />
+	</flow>
+</mule>

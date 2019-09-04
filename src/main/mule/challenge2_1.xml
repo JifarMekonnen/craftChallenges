@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config2" doc:name="HTTP Listener config" doc:id="f404e7f8-a516-4748-9a5a-304e7814d181" >
+		<http:listener-connection host="localhost" port="8082" />
+	</http:listener-config>
+	<http:listener-config name="HTTP_Listener_config8" doc:name="HTTP Listener config" doc:id="2355eaa4-b7b7-463a-850c-a21e70e94b21" >
+		<http:listener-connection host="localhost" port="8086" />
+	</http:listener-config>
+	<flow name="challenge2_1Flow" doc:id="532d46ec-534e-4c28-8ef5-b1e4b81bbd93" >
+		<http:listener doc:name="Listener" doc:id="75b37996-b1d4-4608-992d-9c2b9b428685" config-ref="HTTP_Listener_config2" path="/demo3"/>
+		<ee:transform doc:name="Transform Message" doc:id="3922efda-dd2f-4eee-8798-044bc056d703" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{studentInfo: (payload.studentPayment map ((firstInputValue) ->
+  {
+    id : firstInputValue.id,
+    card_no: firstInputValue.card_no,
+    code: firstInputValue.code,
+    (payload.studentAddress filter ($.*id contains firstInputValue.id) map (secondInputValue) -> {
+      street : secondInputValue.street,
+      zip:secondInputValue.zip,
+      city:secondInputValue.city
+    })
+  })orderBy $.id)}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="5ef9cdff-c6af-4bf4-af57-3e17d41e1c98" />
+	</flow>
+</mule>

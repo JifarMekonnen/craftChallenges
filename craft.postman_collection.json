@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "845eb602-6a29-4b16-80ff-feb6f535024e",
+		"name": "craft",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8082/demo3",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"studentPayment\":[{\"id\":\"101\",\"card_no\":\"1212121211\",\"code\":\"121\"},{\"id\":\"105\",\"card_no\":\"1212121215\",\"code\":\"125\"},{\"id\":\"106\",\"card_no\":\"1212121216\",\"code\":\"126\"},{\"id\":\"103\",\"card_no\":\"1212121213\",\"code\":\"123\"}],\n\"studentAddress\":[{\"id\":\"103\",\"street\":\"johnson\",\"zip\":\"21213\",\"city\":\"minneapolis\"},{\"id\":\"105\",\"street\":\"water cool\",\"zip\":\"12125\",\"city\":\"wilmington\"},{\"id\":\"106\",\"street\":\"westchester\",\"zip\":\"126\",\"city\":\"baltimore\"},{\"id\":\"101\",\"street\":\"clear water\",\"zip\":\"10101\",\"city\":\"st. pete\"}]\n}"
+				},
+				"url": {
+					"raw": "localhost:8082/demo3",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"demo3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8084/demo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"id\":\"101\",\"name\":\"Ted1\",\"company\":\"google\"},\n {\"id\":\"102\",\"name\":\"Ted2\",\"company\":\"microsoft\"},\n \n{\"id\":\"103\",\"name\":\"Ted3\",\"company\":\"craft\"},\n{\"id\":\"104\",\"name\":\"Ted4\",\"company\":\"google\"},\n \n{\"id\":\"105\",\"name\":\"Ted5\",\"company\":\"craft\"},\n{\"id\":\"106\",\"name\":\"Ted6\",\"company\":\"ibm\"},\n\n{\"id\":\"107\",\"name\":\"Ted7\",\"company\":\"microsoft\"},\n{\"id\":\"108\",\"name\":\"Ted8\",\"company\":\"google\"}\n]\n"
+				},
+				"url": {
+					"raw": "localhost:8084/demo",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"demo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhoat:8086/demo2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"id\":\"101\",\"name\":\"Ted1\",\"company\":\"google\"},\n {\"id\":\"102\",\"name\":\"Ted2\",\"company\":\"microsoft\"},\n \n{\"id\":\"103\",\"name\":\"Ted3\",\"company\":\"craft\"},\n{\"id\":\"104\",\"name\":\"Ted4\",\"company\":\"google\"},\n \n{\"id\":\"105\",\"name\":\"Ted5\",\"company\":\"craft\"},\n{\"id\":\"106\",\"name\":\"Ted6\",\"company\":\"ibm\"},\n\n{\"id\":\"107\",\"name\":\"Ted7\",\"company\":\"microsoft\"},\n{\"id\":\"108\",\"name\":\"Ted8\",\"company\":\"google\"}\n]\n"
+				},
+				"url": {
+					"raw": "localhost:8086/demo2",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"demo2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

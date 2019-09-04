@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="o1" format="json">
+      <types:shape format="weave" example="o1.json"><![CDATA[%dw 2.0
+
+type o1 = Array<{|  company: String,   no_employees: String|}> {"example": "[{\"company\":\"google\",\"no_employees\":\"3\"},{\"company\":\"craft\",\"no_employees\":\"2\"},{\"company\":\"microsoft\",\"no_employees\":\"2\"},{\"company\":\"ibm\",\"no_employees\":\"1\"}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="s1" format="json">
+      <types:shape format="weave" example="s1.json"><![CDATA[%dw 2.0
+
+type s1 = Array<{|  id: String,   name: String,   company: String|}> {"example": "[{\"id\":\"101\",\"name\":\"Ted1\",\"company\":\"google\"},{\"id\":\"102\",\"name\":\"Ted2\",\"company\":\"microsoft\"},{\"id\":\"103\",\"name\":\"Ted3\",\"company\":\"craft\"},{\"id\":\"104\",\"name\":\"Ted4\",\"company\":\"google\"},{\"id\":\"105\",\"name\":\"Ted5\",\"company\":\"craft\"},{\"id\":\"106\",\"name\":\"Ted6\",\"company\":\"ibm\"},{\"id\":\"107\",\"name\":\"Ted7\",\"company\":\"microsoft\"},{\"id\":\"108\",\"name\":\"Ted8\",\"company\":\"google\"}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="s2" format="json">
+      <types:shape format="weave" example="s2.json"><![CDATA[%dw 2.0
+
+type s2 = {|
+  studentPayment: Array<{|    id: String,     card_no: String,     code: String  |}>, 
+  studentAddress: Array<{|    id: String,     street: String,     zip: String,     city: String  |}>
+|} {"example": "{\"studentPayment\":[{\"id\":\"101\",\"card_no\":\"1212121211\",\"code\":\"121\"},{\"id\":\"105\",\"card_no\":\"1212121215\",\"code\":\"125\"},{\"id\":\"106\",\"card_no\":\"1212121216\",\"code\":\"126\"},{\"id\":\"103\",\"card_no\":\"1212121213\",\"code\":\"123\"}],\"studentAddress\":[{\"id\":\"103\",\"street\":\"johnson\",\"zip\":\"21213\",\"city\":\"minneapolis\"},{\"id\":\"105\",\"street\":\"water cool\",\"zip\":\"12125\",\"city\":\"wilmington\"},{\"id\":\"106\",\"street\":\"westchester\",\"zip\":\"126\",\"city\":\"baltimore\"},{\"id\":\"101\",\"street\":\"clear water\",\"zip\":\"10101\",\"city\":\"st. pete\"}]}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="o2" format="json">
+      <types:shape format="weave" example="o2.json"><![CDATA[%dw 2.0
+
+type o2 = {|
+  studentInfo: Array<{|    id: String,     card_no: String,     code: String,     street: String,     zip: String,     city: String  |}>
+|} {"example": "{\"studentInfo\":[{\"id\":\"101\",\"card_no\":\"1212121211\",\"code\":\"121\",\"street\":\"clear water\",\"zip\":\"10101\",\"city\":\"st. pete\"},{\"id\":\"103\",\"card_no\":\"1212121213\",\"code\":\"123\",\"street\":\"johnson\",\"zip\":\"21213\",\"city\":\"minneapolis\"},{\"id\":\"105\",\"card_no\":\"1212121215\",\"code\":\"125\",\"street\":\"water cool\",\"zip\":\"12125\",\"city\":\"wilmington\"},{\"id\":\"106\",\"card_no\":\"1212121216\",\"code\":\"126\",\"street\":\"westchester\",\"zip\":\"126\",\"city\":\"baltimore\"}]}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#e7dd17c7-61d2-4c33-8e85-899dbbfaaa19">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="s1"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="o1"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#02db750e-3f39-492a-9f57-71675e87c362">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="s1"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="o1"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#3922efda-dd2f-4eee-8798-044bc056d703">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="s2"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="o2"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>
