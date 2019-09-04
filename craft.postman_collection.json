@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "localhost:8082/demo3",
+			"name": "For_challenge_2_1",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -35,7 +35,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8084/demo",
+			"name": "For_challenge_1_1",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -64,7 +64,7 @@
 			"response": []
 		},
 		{
-			"name": "localhoat:8086/demo2",
+			"name": "For_challenge_1_2",
 			"request": {
 				"method": "POST",
 				"header": [
